@@ -1,0 +1,9 @@
+.p1{
+    width: 100%;
+    height: 100%;
+}
+.div1{
+    position: relative;
+    top: 100px;
+    left: 500px;
+}

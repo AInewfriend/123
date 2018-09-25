@@ -1,0 +1,11 @@
+.div{
+    position: relative;
+    top: 100px;
+    left: 600px;
+
+}
+.img{
+    width: 5%;
+    height: 5%;
+    border-bottom-color: red;
+}

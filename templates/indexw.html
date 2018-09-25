@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+我是个人博客界面
+{% endblock %}
+
+{% block extCss %}
+
+<link href="/static/staticw/css/base.css" rel="stylesheet">
+<link href="/static/staticw/css/index.css" rel="stylesheet">
+<link href="/static/staticw/css/m.css" rel="stylesheet">
+{% endblock %}
+{% block extJs %}
+<script src="/static/staticw/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/staticw/js/comm.js"></script>
+
+<script src="/static/staticw/js/modernizr.js"></script>
+
+{% endblock %}
+{% block content %}
+<header class="header-navigation" id="header">
+  <nav><div class="logo"><a href="/">个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="index.html">网站首页</a></li>
+      <li><a href="share.html">我的相册</a></li>
+      <li><a href="list.html">我的日记</a></li>
+      <li><a href="about.html">关于我</a></li>
+      <li><a href="gbook.html">留言</a></li>
+      <li><a href="info.html">内容页</a></li>
+      <li><a href="infopic.html">内容页</a></li>
+    </ul>
+</nav>
+</header>
+<article>
+  <aside class="l_box">
+      <div class="about_me">
+        <h2>关于我</h2>
+        <ul>
+          <i><img src="/static/staticw/images/4.jpg"></i>
+          <p><b>博客</b>，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。</p>
+        </ul>
+      </div>
+      <div class="wdxc">
+
+      </div>
+      <div class="search">
+        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+          <input name="show" value="title" type="hidden">
+          <input name="tempid" value="1" type="hidden">
+          <input name="tbname" value="news" type="hidden">
+          <input name="Submit" class="input_submit" value="搜索" type="submit">
+        </form>
+      </div>
+      <div class="fenlei">
+
+      </div>
+      <div class="tuijian">
+
+      </div>
+      <div class="links">
+        <h2>友情链接</h2>
+        <ul>
+          <a href="http://www.yangqq.com">个人博客</a> <a href="http://www.yangqq.com">博客</a>
+        </ul>
+      </div>
+      <div class="guanzhu">
+
+      </div>
+  </aside>
+  <main class="r_box">
+      {% for content in page %}
+      <li><i><a href="/"><img src="/media/{{ content.icon }}"></a></i>
+          <h3><a href="/">{{ content.title }}</a></h3>
+      <p>{{ content.content }}</p>
+
+    </li>
+          <p>当前页：{{ page.number }}</p>
+    <p>页码：{% for i in page.paginator.page_range %}
+    <a href="{% url 'app:loginw' %}?page={{ i }}">{{ i }}</a>
+    {% endfor %}
+    </p>
+    <p>
+    {%  if page.has_previous %}
+    <a href="{% url 'app:loginw' %}?page={{ page.previous_page_number }}">上一页</a>
+        {% endif %}
+    {%  if page.has_next %}
+     <a href="{% url 'app:loginw' %}?page={{ page.next_page_number }}">下一页</a>
+    {% endif %}
+    </p>
+{% endfor %}
+
+  </main>
+</article>
+<footer>
+  <p>Design by <a href="http://www.yangqq.com" target="_blank">个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+{% endblock %}
